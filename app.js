@@ -10,8 +10,6 @@ const {Product} = require('./model/Product');
 const {Cart} = require('./model/Cart');
 
 // midleware
-
-
 app.use(express.json());
 app.use(cors());
 app.use(morgan('dev'))
