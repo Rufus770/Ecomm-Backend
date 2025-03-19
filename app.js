@@ -1,27 +1,32 @@
 const express = require('express');
 const app = express();
-const dotenv = require('dotenv').config();
 const {User} = require('./model/User');
 const mongoose = require('mongoose');
-const bcrypt = require('bcrypt');
+const bcrypt = require('bcryptjs');
 const jwt = require('jsonwebtoken');
 const cors = require('cors');
 const morgan = require('morgan');
 const {Product} = require('./model/Product');
 const {Cart} = require('./model/Cart');
 
+// midleware
 
 
-mongoose.connect(process.env.MONGODB_URL)
+app.use(express.json());
+app.use(cors());
+app.use(morgan('dev'))
+
+// iIPOxVwE1y3yYDn0
+
+let MONGODB_URL = "mongodb+srv://karurevankar5:iIPOxVwE1y3yYDn0@cluster0.e1q1i.mongodb.net/?retryWrites=true&w=majority"
+
+mongoose.connect(MONGODB_URL)
 .then(()=>{
     console.log("db is connected")
 }).catch((err)=>{
     console.log("db is not connected",err);
 })
 
-app.use(express.json());
-app.use(cors());
-app.use(morgan('dev'))
 
 //task-1 create a route for register user
 app.post('/register',async(req,res)=>{
